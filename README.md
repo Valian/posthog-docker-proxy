@@ -113,7 +113,13 @@ posthog.host = 'http://localhost:8080'  # Your proxy URL
 This proxy includes referer header validation to ensure requests only come from your specified domain. The validation allows:
 
 - `localhost` (for development)
-- Any subdomain of your configured domain (e.g., `app.myapp.com`, `www.myapp.com`)
+- Any level of subdomains of your configured domain (e.g., `app.myapp.com`, `www.myapp.com`, `staging.beta.myapp.com`)
+
+**Examples for domain `postline.ai`:**
+- ✅ `postline.ai` (main domain)
+- ✅ `app.postline.ai` (single subdomain)
+- ✅ `staging.beta.postline.ai` (multi-level subdomain)
+- ❌ `otherdomain.com` (different domain)
 
 Requests from other domains will receive a 403 Forbidden response.
 

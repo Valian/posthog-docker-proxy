@@ -16,8 +16,9 @@ http {
 
         # Check Referer header
         # Change ${DOMAIN} to your domain as needed to ensure requests only come from your domain
+        # Allows any level of subdomains (e.g., staging.beta.postline.ai for postline.ai)
         set $valid_referer 0;
-        if ($http_referer ~* "^https?://(localhost|([a-zA-Z0-9-]+)\.${DOMAIN})") {
+        if ($http_referer ~* "^https?://(localhost|([a-zA-Z0-9-]+\.)*${DOMAIN})") {
             set $valid_referer 1;
         }
 
