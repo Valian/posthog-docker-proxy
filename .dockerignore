@@ -1,0 +1,18 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+*.md
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Original nginx config (we use the template now)
+nginx.conf
+
+# OS files
+.DS_Store
+Thumbs.db
