@@ -11,11 +11,11 @@ A configurable nginx reverse proxy for PostHog that allows you to proxy requests
 
 ## Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `NGINX_PORT` | `8080` | Port on which nginx will listen |
-| `DOMAIN` | `hogbook.com` | Your domain for referer validation (without protocol) |
-| `POSTHOG_REGION` | `us` | PostHog region (`us` or `eu`) |
+| Variable | Default | Required | Description |
+|----------|---------|----------|-------------|
+| `NGINX_PORT` | `8080` | No | Port on which nginx will listen |
+| `DOMAIN` | - | **Yes** | Your domain for referer validation (without protocol) |
+| `POSTHOG_REGION` | `us` | No | PostHog region (`us` or `eu`) |
 
 ## Quick Start
 
@@ -25,8 +25,8 @@ A configurable nginx reverse proxy for PostHog that allows you to proxy requests
 # Build the image
 docker build -t posthog-nginx-proxy .
 
-# Run with default settings
-docker run -p 8080:8080 posthog-nginx-proxy
+# Run with required DOMAIN (will fail without it)
+docker run -p 8080:8080 -e DOMAIN=myapp.com posthog-nginx-proxy
 
 # Run with custom configuration
 docker run -p 8080:8080 \
@@ -123,7 +123,7 @@ docker build -t posthog-nginx-proxy .
 
 ### Testing
 ```bash
-# Start the proxy
+# Start the proxy (DOMAIN is required)
 docker run -p 8080:8080 -e DOMAIN=localhost posthog-nginx-proxy
 
 # Test with curl
