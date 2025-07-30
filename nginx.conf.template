@@ -28,6 +28,7 @@ http {
         location ~ ^/static/(.*)$ {
             set $posthog_static "https://${POSTHOG_REGION}-assets.i.posthog.com/static/";
             # use variable to force proper DNS re-resolution, also must manually pass along path
+            proxy_ssl_server_name on;
             proxy_pass $posthog_static$1$is_args$args;
             proxy_set_header Host "${POSTHOG_REGION}-assets.i.posthog.com";
         }
@@ -35,6 +36,7 @@ http {
         location ~ ^/(.*)$ {
             set $posthog_main "https://${POSTHOG_REGION}.i.posthog.com/";
             # use variable to force proper DNS re-resolution, also must manually pass along path
+            proxy_ssl_server_name on;
             proxy_pass $posthog_main$1$is_args$args;
             proxy_set_header Host "${POSTHOG_REGION}.i.posthog.com";
         }
