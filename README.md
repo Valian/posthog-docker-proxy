@@ -19,7 +19,17 @@ A configurable nginx reverse proxy for PostHog that allows you to proxy requests
 
 ## Quick Start
 
-### Using Docker
+### Using Docker Hub Image (Recommended)
+
+```bash
+# Run with required DOMAIN
+docker run -p 8080:8080 -e DOMAIN=myapp.com valian/posthog-nginx-proxy:latest
+
+# Run with specific version
+docker run -p 8080:8080 -e DOMAIN=myapp.com valian/posthog-nginx-proxy:v1.0.0
+```
+
+### Building Locally
 
 ```bash
 # Build the image
@@ -147,6 +157,19 @@ docker run -p 8080:8080 -e DOMAIN=myapp.com posthog-nginx-proxy
 ## License
 
 This project is based on the [PostHog nginx proxy documentation](https://posthog.com/docs/advanced/proxy/nginx) and is provided as-is for educational and development purposes.
+
+## Releases
+
+This project uses semantic versioning. When a new tag is pushed to GitHub, it automatically:
+
+1. Builds the Docker image
+2. Pushes to Docker Hub as `valian/posthog-nginx-proxy:latest` and `valian/posthog-nginx-proxy:vX.Y.Z`
+3. Creates a GitHub release
+
+### Available Docker Images
+
+- `valian/posthog-nginx-proxy:latest` - Latest stable release
+- `valian/posthog-nginx-proxy:vX.Y.Z` - Specific version (e.g., `v1.0.0`)
 
 ## Contributing
 
